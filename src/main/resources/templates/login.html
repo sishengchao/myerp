@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        /* 将具有默认margin和padding的标记置零，所有标记的margin、padding都在使用时具体定义 */
+        *{ margin:0;padding:0;}
+
+        /* 修正IE5.x和IE6的斜体溢出bug */
+        * html body{ overflow:visible;}
+        * html iframe, * html frame{ overflow:auto;}
+        * html frameset{ overflow:hidden;}
+
+        /* 常用标签，基本标签默认样式取消，HTML标签，取消基本标签默认样式，防止不同浏览器显示效果不同，text-align:center; 解决不同浏览器居中问题 */
+        body{color:#000; background:#FFF; font:12px/22px Verdana,Arial,sans-serif,"Times New Roman",宋体; text-align:center;min-width:1024px;}
+        body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,tr{ margin:0; padding:0;}
+        input,select{ font-size:12px; vertical-align:middle;}
+
+        /* 设置内容左对齐，恢复因BODY设置剧中产生的继承 */
+        body div{ text-align:left;}
+
+        /* 标签属性，textarea,input 强制输入时内容超出时换行 */
+        textarea,input{ word-wrap:break-word; word-break:break-all; padding:0px;}
+
+        /* 清除ul列表标记的样式，ul列表更多的用在不需要列表前置符号的样式里 */
+        li{ list-style-type:none;}
+
+        /* 定义图片边框，当图片作为链接内容被填充时，会有默认边框出现，重定义掉 */
+        img{ border:0 none;}
+
+        /* 定义默认的链接样式，仅仅是作为默认样式提供，可以在各自的实例中覆盖掉 */
+        a:link, a:visited{ color:#04C; text-decoration:none;}
+        a:hover{ color:#F60; text-decoration:underline;}
+
+        /* 去掉链接的虚线框 */
+        a { outline:none; star:expression(this.onFocus=this.blur());}
+
+        /* 定义H系列标签，覆盖H系列标签默认属性 */
+        h1{ font-size:24px;}
+        h2{ font-size:20px;}
+        h3{ font-size:18px;}
+        h4{ font-size:16px;}
+        h5{ font-size:14px;}
+        h6{ font-size:12px;}
+
+        .div-top{
+            background-color: #2892ce; height: 120px;width: 100%;display: flex;justify-content: center;align-items: center;
+        }
+        .div-top-title{
+            font-family: Microsoft YaHei;color: #F0F0F0; height: 120px;width:1024px;display: flex;align-items: center;justify-content:left;
+        }
+
+        .div-center{
+            height: 500px;width: 100%;background-color: #F6F6F6;display: flex;justify-content: center;align-items: center;
+        }
+        .div-center-left{
+            height: 500px;width:512px;display: flex;justify-content:center;
+            border-right: 3px dashed #e2e2e2;
+        }
+        .div-center-right{
+            height: 500px;width:512px;display: flex;justify-content:center;
+        }
+        /*  display:flex;(弹性布局)    justify-content:center;(内容水平居中)   align-items:center; (内容垂直居中)  */
+        .div-bottom{
+            height: 30px;width: 100%;display: flex;justify-content: center;align-items: center;margin-top: 20px;color: #2892ce;
+        }
+    </style>
+    <link rel="stylesheet" href="/myerp/static/layui/css/layui.css"  media="all">
+</head>
+<body style="width: 100%;height: 100%;">
+<!--<div class="div-top">
+    <div class="div-top-title">
+        <span id="id-span-title" style="font-size: 25px;margin-left: 10px;"></span>
+    </div>
+</div>-->
+<div class="div-center">
+    <div class="div-center-right">
+        <form class="layui-form layui-form-pane" action="" style="width: 80%;">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 70px;">
+                <legend style="font-size: 20px;color: #FF5722;"><i class="layui-icon layui-icon-app" style="font-size: 20px;"></i>&nbsp;登录系统 欢迎使用</legend>
+            </fieldset>
+            <div class="layui-field-box">
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="layui-icon layui-icon-username"></i>登录账户</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="id-login-account" name="loginAccount"  maxlength="50" autofocus="autofocus" lay-verify="required" placeholder="必填：登录账户" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="layui-icon layui-icon-password"></i>账户密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="id-login-pwd" name="loginPwd" maxlength="20" lay-verify="required" placeholder="必填：6-20位密码" class="layui-input">
+                    </div>
+                </div>
+                <!--<div class="layui-form-item">
+                    <label class="layui-form-label"><i class="layui-icon layui-icon-vercode"></i>验证码</label>
+                    <div class="layui-input-inline" style="width: 130px">
+                        <input type="text" id="id-ver-code" name="verCode" maxlength="4" lay-verify="required" placeholder="必填：验证码" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline" style="width: 120px">
+                        <img id="id-img-ver-code" style="width: 110px;height: 35px;"/>
+                    </div>
+                </div>-->
+                <div class="layui-form-item " style="margin-top: 30px;" >
+                    <button class="layui-btn layui-btn-danger c-btn-submit" style="margin-left: 50%" lay-submit lay-filter="f-submit-login">登录系统</button>
+                    <!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<div class="div-bottom">
+    <div style="width:1024px;display: flex;align-items: center;justify-content:center;">
+        <p style="font-size: 16px;">www.soft86.cn JBMS-永远免费 持续更新(你可删除此行)</p><br>
+    </div>
+</div>
+<div class="div-bottom">
+    <div style="width:1024px;display: flex;align-items: center;justify-content:center;">
+        <p style="font-size: 14px;" id="id-p-it-server">技术服务 Email:bms@soft86.cn QQ:1941616007</p>
+    </div>
+</div>-->
+
+<script src="/myerp/static/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function(){
+        var cform = layui.form;
+        var $ = layui.jquery;
+        document.title = "我是修改过的TITL";
+        $("#id-Bookmark").attr("href","img/page_logo.ico");
+        $("#id-ShortcutIcon").attr("href","img/page_logo.ico");
+
+        cform.on('submit(f-submit-login)', function(data){
+            var param = {
+                userNo : $("INPUT[NAME=loginAccount]").val(),
+                password : $("INPUT[NAME=loginPwd]").val(),
+                // verCode : $("INPUT[NAME=verCode]").val(),
+            };
+            $.extend(param, data.field);
+            if(param.loginPwd.length <= 6 && param.loginPwd.length > 20){
+                layer.tips("密码为6-20位","#id-login-pwd",{tips: [4, '#393D49'],time: 1000});
+                return false;
+            }
+/*            if(param.verCode.length != 4){
+                layer.tips("验证码为4位","#id-ver-code",{tips: [4, '#393D49'],time: 1000});
+                return false;
+            }*/
+            var indexLoad;
+            $.ajax({
+                type:"post",
+                url:"/myerp/ajaxLogin",
+                data:JSON.stringify(param),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                beforeSend:function(){
+                    indexLoad = layer.load(1, {
+                        shade: [0.7,'#fff']
+                    });
+                    $(".c-btn-submit").addClass("layui-btn-disabled");
+                },
+                success:function(res){
+                    if("0000" === res.code){
+                        layer.msg('进入系统中...', {
+                            icon: 16
+                            ,shade: 0.01
+                        });
+
+                        // setTimeout(function(){
+                            window.location.href = "/myerp/index";
+                        // }, 1000);
+                    }else{
+                        if("E0000009" === res.code){
+                            layer.tips(res.msg,"#id-ver-code",{tips: [4, '#393D49'],time: 1000});
+                        }else if("C37" === res.code){
+                            layer.tips(res.msg,"#id-img-ver-code",{tips: [4, '#393D49'],time: 1000});
+                            /*$("#id-img-ver-code").attr("src",jsCommon.ver_code+"?time="+Math.random());*/
+                            $("#id-ver-code").val("");
+                            $("#id-ver-code").focus();
+                        }else{
+                            layer.msg(res.msg);
+                        }
+                    }
+                },
+                complete:function(XMLHttpRequest,status){
+                    layer.close(indexLoad);
+                    $(".c-btn-submit").removeClass("layui-btn-disabled");
+                }
+            });
+            return false;
+        });
+
+        /*$("#id-img-ver-code").attr("src",jsCommon.ver_code);
+        $("#id-img-ver-code").on("click",function(e){
+            $("#id-img-ver-code").attr("src",jsCommon.ver_code+"?time="+Math.random());*/
+        // });
+
+        $("#id-tbody").on("click","tr",function(e){
+            var index = layer.open({
+                title: '通知与公告',
+                type: 2,
+                content: 'base/notice/show?id='+$(this).attr("c_p1"),
+                area: ['650px', '500px']
+            });
+        });
+
+        // initDatas($);
+    });
+
+    /*function initDatas($){
+        var ajax1=$.ajax({
+            type:"get",
+            url:api_config_base.config.get,
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+        });
+
+        var param = {
+            client:jsCommon.client
+        };
+        var ajax2=$.ajax({
+            type:"get",
+            url:api_config_base.notice.login_data,
+            data:param,
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+        });
+
+        $.when(ajax1, ajax2).done(function(r1, r2){
+            layui.data('T_CONFIG', {
+                key: 'pageIcon'
+                ,value: r1[0].data.pageIcon
+            });
+            layui.data('T_CONFIG', {
+                key: 'pageTitle'
+                ,value: r1[0].data.pageTitle
+            });
+            layui.data('T_CONFIG', {
+                key: 'loginPageTitle'
+                ,value: r1[0].data.loginPageTitle
+            });
+            layui.data('T_CONFIG', {
+                key: 'loginPageBottomText'
+                ,value: r1[0].data.loginPageBottomText
+            });
+            layui.data('T_CONFIG', {
+                key: 'mainPageTitle'
+                ,value: r1[0].data.mainPageTitle
+            });
+            layui.data('T_CONFIG', {
+                key: 'mainPageShortTitle'
+                ,value: r1[0].data.mainPageShortTitle
+            });
+            layui.data('T_CONFIG', {
+                key: 'pageIcon'
+                ,value: r1[0].data.pageIcon
+            });
+
+            jsCommon.initPageConfig();
+
+            $("#id-span-title").text(layui.data('T_CONFIG').loginPageTitle);
+            $("#id-p-it-server").text(layui.data('T_CONFIG').loginPageBottomText);
+
+            $("#id-tbody").empty();
+            var tbodyDom = "";
+            $.each(r2[0].data.notices, function(i, item){
+                tbodyDom+='<tr style="color: #2892ce;cursor: pointer;" c_p1="'+item.id+'">';
+                tbodyDom+='<td><i class="layui-icon layui-icon-notice" style="font-size: 16px;"></i>'+item.noticeTitle+'</td>';
+                tbodyDom+='<td>'+item.createDate+'</td>';
+                tbodyDom+='</tr>';
+            });
+            $("#id-tbody").append(tbodyDom);
+        });
+    }*/
+</script>
+</body>
+</html>

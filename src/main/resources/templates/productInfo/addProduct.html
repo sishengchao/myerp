@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css">
+</head>
+<body>
+
+<form class="layui-form" action="" style="text-aglin:center">
+    <div class="layui-form-item">
+        <label class="layui-form-label">产品名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="productName" required  lay-verify="required" placeholder="请输入产品名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">产品简介</label>
+        <div class="layui-input-inline">
+            <textarea name="productBriefly" placeholder="请输入" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-inline">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
+</form>
+
+</body>
+<script src="../../static/layui/layui.js"></script>
+<script>
+    var indexLoad;
+    layui.use('form', function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            var param = {
+                productName : $("INPUT[NAME=productName]").val(),
+                productBriefly : $("INPUT[NAME=productBriefly]").val(),
+                // verCode : $("INPUT[NAME=verCode]").val(),
+            };
+            $.extend(param, data.field);
+            $.ajax({
+                type:"post",
+                url:"/myerp/product/add",
+                data:JSON.stringify(param),
+                dataType: "json",
+                contentType: "application/json;charset=utf-8",
+                beforeSend:function(){
+                    indexLoad = layer.load(1, {
+                        shade: [0.7,'#fff']
+                    });
+                    $(".c-btn-submit").addClass("layui-btn-disabled");
+                },
+                success:function(res){
+                    layer.close(indexLoad);
+                    if("0000" === res.code){
+                        parent.layui.table.reload('product',{page: {curr: 1}})
+                        window.parent.layer.close(indexLoad);
+                        layer.msg('添加成功');
+                    }else{
+                        layer.msg(res.msg);
+                    }
+                },
+                complete:function(XMLHttpRequest,status){
+                    layer.close(indexLoad);
+                }
+            });
+            return false;
+        });
+    });
+    function echoData(data,indexLoads) {
+        indexLoad = indexLoads;
+    }
+</script>
+
+</html>

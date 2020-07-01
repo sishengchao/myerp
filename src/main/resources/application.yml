@@ -1,0 +1,38 @@
+spring:
+  thymeleaf:
+    #模板的模式，支持 HTML, XML TEXT JAVASCRIPT
+    mode: HTML5
+    #编码 可不用配置
+    encoding: UTF-8
+    #开发配置为false,避免修改模板还要重启服务器
+    cache: false
+    #配置模板路径，默认是templates，可以不用配置
+    prefix: classpath:/templates/
+    servlet:
+      #内容类别,可不用配置
+      content-type: text/html
+    suffix: .html
+  datasource:
+    url: jdbc:mysql://192.168.188.188:3306/erp
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  servlet:
+    context-path: /myerp
+
+    # 之后的填写mybatis的mapper书写路径
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.sisc.myerp.bean
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  config: classpath:log4j.xml
+  level:
+    org:
+      springframework: INFO
+
+resources:
+  static-locations: ["/templates/","/static/","/lib/","/temp/"]

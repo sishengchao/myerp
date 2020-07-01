@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+</head>
+<body>
+<div class="layui-tab" lay-filter="demo" lay-allowclose="true">
+<ul class="layui-tab-title">
+    <li class="layui-this" lay-id="main">主页</li>
+</ul>
+<div class="layui-tab-content" style="height: 100%;">
+    <div class="layui-tab-item layui-show">内容1</div>
+</div>
+</div>
+
+<script src="../static/layui/layui.js"></script>
+<script>
+    layui.config({
+        base:"../static/myJs/"
+    }).use('body',function () {
+        var $ = layui.jquery,
+        element = layui.element;
+        var chid = $('.layui-tab-title li').firstChild;
+        console.log(chid);
+    });
+
+
+</script>
+</body>
+</html>

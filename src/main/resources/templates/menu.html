@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+</head>
+<body>
+<ul class="layui-nav layui-nav-tree" lay-filter="test" id="menuUl">
+    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+<!--    <li class="layui-nav-item layui-nav-itemed" >
+        <a href="javascript:;"></a>
+        <dl class="layui-nav-child">
+            <dd><a href="#" data-url="/myerp/templates/productInfo/productInfo.html" data-iframeId="productList" data-title="订单信息" data-id="order" data-type="tabAdd">选项1</a></dd>
+            <dd><a href="javascript:;">选项2</a></dd>
+            <dd><a href="">跳转</a></dd>
+        </dl>
+    </li>-->
+    <li class="layui-nav-item">
+        <a href="javascript:;">基础信息维护</a>
+        <dl class="layui-nav-child">
+            <dd><a href="#" data-url="/myerp/templates/productInfo/productInfo.html" data-iframeId="productList" data-title="产品信息" data-id="order" data-type="tabAdd">产品信息</a></dd>
+            <dd><a href="#" data-url="/myerp/templates/warehouse/warehouseInfo.html" data-iframeId="warehouseList" data-title="仓库信息" data-id="warehouse" data-type="tabAdd">仓库信息</a></dd>
+            <dd><a href="">电商平台</a></dd>
+        </dl>
+    </li>
+    <!--<li class="layui-nav-item">
+        <a href="#" data-url="/myerp/templates/productInfo/productInfo.html" data-iframeId="productList" data-title="产品信息" data-id="order" data-type="tabAdd">产品信息</a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="#" data-url="/myerp/templates/productInfo/warehouseInfo.html" data-iframeId="warehouseList" data-title="仓库信息" data-id="warehouse" data-type="tabAdd">仓库信息</a>
+    </li>-->
+</ul>
+<script src="../static/layui/layui.js"></script>
+<script>
+    var element ;
+    layui.config({
+        base:"../static/myJs/"
+    }).use('menu');
+
+</script>
+</body>
+</html>
